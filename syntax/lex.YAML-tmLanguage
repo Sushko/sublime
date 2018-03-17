@@ -5,74 +5,58 @@ scopeName: text.lex
 fileTypes: [lex, marvell]
 uuid: 0f1542b9-eac7-485c-ade4-2f952adb4de5
 
+# available colors
 
-# grey                    - comment
-# yelow                   - string
-# purple                  - constant.numeric
-# purple                  - constant.language
-# purple                  - constant.character, constant.other
-# white                   - variable
-# red                     - keyword
-# red                     - storage
-# blue italic             - storage.type
-# green underlined        - entity.name.class
-# green italic underlined - entity.other.inherited-class
-# green                   - entity.name.function
-# orange italic           - variable.parameter
-# red                     - entity.name.tag
-# green                   - entity.other.attribute-name
-# blue                    - support.function
-# blue                    - support.constant
-# blue italic             - support.type, support.class
-# white                   - support.other.variable
-# highlighted red         - invalid
-# highlighted purple      - invalid.deprecated
-
-
-
-# grey                    - comment
-# yelow                   - string
-# purple                  - constant.numeric
-# white                   - variable
-# red                     - keyword
-# blue                    - support.function
-# green                   - entity.name.function
-# orange italic           - variable.parameter
-# blue italic             - storage.type
-# green underlined        - entity.name.class
-# green italic underlined - entity.other.inherited-class
-# highlighted red         - invalid
-# highlighted purple      - invalid.deprecated
-
+# color.white                   markup
+# color.white.italic            markup.italic
+# color.white.bold              markup.bold
+# color.white.highlight         markup.raw
+# color.grey                    comment
+# color.red                     keyword
+# color.red.highlight           invalid.illegal
+# color.orange.italic           variable.parameter
+# color.yellow                  string
+# color.green                   entity.name
+# color.green.italic            entity.other.inherited-class
+# color.blue                    support.function
+# color.blue.italic             storage.type
+# color.purple                  constant.numeric
+# color.purple.highlight        invalid.deprecated
 
 patterns:
-- comment: Add color templates
-  name: comment.lex
-  match: (^|(\s+))(color-grey)((\s+)|$)
-- name: string.lex
-  match: (^|(\s+))(color-yelow)((\s+)|$)
-- name: constant.numeric.lex
-  match: (^|(\s+))(color-purple)((\s+)|$) 
-- name: variable.lex
-  match: (^|(\s+))(color-white)((\s+)|$) 
+
+- comment: color templates
+
+- name: markup.lex
+  match: (^|(\s+))(color\.white)((\s+)|$) 
+- name: markup.italic.lex
+  match: (^|(\s+))(color\.white\.italic)((\s+)|$)
+- name: markup.bold.lex
+  match: (^|(\s+))(color\.white\.bold)((\s+)|$)
+- name: markup.raw.lex
+  match: (color\.white\.highlight)
+- name: comment.lex
+  match: (^|(\s+))(color\.grey)((\s+)|$)
 - name: keyword.lex
-  match: (^|(\s+))(color-red)((\s+)|$) 
-- name: support.function.lex
-  match: (^|(\s+))(color-blue)((\s+)|$) 
-- name: entity.name.function.lex
-  match: (^|(\s+))(color-green)((\s+)|$) 
+  match: (^|(\s+))(color\.red)((\s+)|$) 
+- name: invalid.illegal.lex
+  match: (color\.red\.highlight) 
 - name: variable.parameter.lex
-  match: (^|(\s+))(color-orange-italic)((\s+)|$) 
-- name: storage.type.lex
-  match: (^|(\s+))(color-blue-italic)((\s+)|$) 
-- name: entity.name.class.lex
-  match: (^|(\s+))(color-green-underlined)((\s+)|$) 
+  match: (^|(\s+))(color\.orange\.italic)((\s+)|$) 
+- name: string.lex
+  match: (^|(\s+))(color\.yellow)((\s+)|$)
+- name: entity.name.lex
+  match: (^|(\s+))(color\.green)((\s+)|$) 
 - name: entity.other.inherited-class.lex
-  match: (^|(\s+))(color-green-italic-underlined)((\s+)|$) 
-- name: invalid.lex
-  match: (^|(\s+))(color-highlighted-red)((\s+)|$) 
+  match: (^|(\s+))(color\.green\.italic)((\s+)|$) 
+- name: support.function.lex
+  match: (^|(\s+))(color\.blue)((\s+)|$) 
+- name: storage.type.lex
+  match: (^|(\s+))(color\.blue\.italic)((\s+)|$) 
+- name: constant.numeric.lex
+  match: (^|(\s+))(color\.purple)((\s+)|$) 
 - name: invalid.deprecated.lex
-  match: (^|(\s+))(color-highlighted-purple)((\s+)|$) 
+  match: (color\.purple\.highlight)
 
 # Also need to add parsing hex & contradict with 1), 2) 
 #- comment: Match all digits
@@ -85,12 +69,12 @@ patterns:
   end: \]
 
 - comment: Match block comments /*...*/
-  name: comment.lex
+  name: comment.block.lex
   begin: \/\*
   end: \*\/
 
 - comment: Match line comments --, //, #
-  name: comment.lex
+  name: comment.line.lex
   begin: (^|(\s+))(\-\-|\/\/|\#)
   end: $
 
@@ -106,7 +90,7 @@ patterns:
 
 - comment: Match links http:// https:// 
   name: support.type.lex
-  begin: ((http://)|(https://))
+  begin: ((http://)|(https://)|(ftp://))
   end: ((\s+)|$)
 
 - comment: Match menu items [..]

@@ -13,81 +13,95 @@
 	<array>
 		<dict>
 			<key>comment</key>
-			<string>Add color templates</string>
+			<string>color templates</string>
+		</dict>
+		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-grey)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.white)((\s+)|$)</string>
+			<key>name</key>
+			<string>markup.lex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.white\.italic)((\s+)|$)</string>
+			<key>name</key>
+			<string>markup.italic.lex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.white\.bold)((\s+)|$)</string>
+			<key>name</key>
+			<string>markup.bold.lex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(color\.white\.highlight)</string>
+			<key>name</key>
+			<string>markup.raw.lex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.grey)((\s+)|$)</string>
 			<key>name</key>
 			<string>comment.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-yellow)((\s+)|$)</string>
-			<key>name</key>
-			<string>string.lex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(^|(\s+))(color-purple)((\s+)|$)</string>
-			<key>name</key>
-			<string>constant.numeric.lex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(^|(\s+))(color-white)((\s+)|$)</string>
-			<key>name</key>
-			<string>variable.lex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(^|(\s+))(color-red)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.red)((\s+)|$)</string>
 			<key>name</key>
 			<string>keyword.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-blue)((\s+)|$)</string>
+			<string>(color\.red\.highlight)</string>
 			<key>name</key>
-			<string>support.function.lex</string>
+			<string>invalid.illegal.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-green)((\s+)|$)</string>
-			<key>name</key>
-			<string>entity.name.function.lex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(^|(\s+))(color-orange-italic)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.orange\.italic)((\s+)|$)</string>
 			<key>name</key>
 			<string>variable.parameter.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-blue-italic)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.yellow)((\s+)|$)</string>
 			<key>name</key>
-			<string>storage.type.lex</string>
+			<string>string.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-green-underlined)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.green)((\s+)|$)</string>
 			<key>name</key>
-			<string>entity.name.class.lex</string>
+			<string>entity.name.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-green-italic-underlined)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.green\.italic)((\s+)|$)</string>
 			<key>name</key>
 			<string>entity.other.inherited-class.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-highlighted-red)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.blue)((\s+)|$)</string>
 			<key>name</key>
-			<string>invalid.lex</string>
+			<string>support.function.lex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(\s+))(color-highlighted-purple)((\s+)|$)</string>
+			<string>(^|(\s+))(color\.blue\.italic)((\s+)|$)</string>
+			<key>name</key>
+			<string>storage.type.lex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.purple)((\s+)|$)</string>
+			<key>name</key>
+			<string>constant.numeric.lex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(color\.purple\.highlight)</string>
 			<key>name</key>
 			<string>invalid.deprecated.lex</string>
 		</dict>
@@ -109,7 +123,7 @@
 			<key>end</key>
 			<string>\*\/</string>
 			<key>name</key>
-			<string>comment.lex</string>
+			<string>comment.block.lex</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -119,7 +133,7 @@
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
-			<string>comment.lex</string>
+			<string>comment.line.lex</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -143,7 +157,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((http://)|(https://))</string>
+			<string>((http://)|(https://)|(ftp://))</string>
 			<key>comment</key>
 			<string>Match links http:// https://</string>
 			<key>end</key>
@@ -153,7 +167,7 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Match menu items x) x{0-9}</string>
+			<string>Match menu items [..]</string>
 			<key>match</key>
 			<string>^(\s*+)([0-9A-F]\))</string>
 			<key>name</key>
@@ -161,7 +175,7 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Match keyword "lex"</string>
+			<string>Match keywords</string>
 			<key>match</key>
 			<string>(^|(\s+))(lex)((\s+)|$)</string>
 			<key>name</key>
