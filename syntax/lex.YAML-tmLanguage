@@ -99,7 +99,7 @@ patterns:
 
 - comment: Match keywords
   name: variable.parameter.lex
-  match: (^|(\s+))(lex)((\s+)|$) # add matches
+  match: (^|(?<=\s))(lex)((?=\s)|$) # add matches
 
 - comment: Match block comments <...>
   name: entity.name.function.lex
