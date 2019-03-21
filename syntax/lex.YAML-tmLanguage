@@ -58,7 +58,11 @@ patterns:
 - name: invalid.deprecated.lex
   match: (color\.purple\.highlight)
 
-# Also need to add parsing hex & contradict with 1), 2) 
+- comment: Match $ sign in usd values
+- name: string.lex
+  match: (^|(?<=\s))(\$)(?=([0-9]{1,3}(\,[0-9]{3})?(\,[0-9]{3})?)((\s)))
+
+# Also need to add parsing hex & contradict with 1), 2)
 #- comment: Match all digits
 #  name: entity.name.function.lex
 #  match: (\d+)
