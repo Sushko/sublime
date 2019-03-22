@@ -2,7 +2,7 @@
 ---
 name: Lex
 scopeName: text.lex
-fileTypes: [lex, marvell]
+fileTypes: [lex, marvell, larch]
 uuid: 0f1542b9-eac7-485c-ade4-2f952adb4de5
 
 # available colors
