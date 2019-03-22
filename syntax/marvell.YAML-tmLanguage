@@ -58,43 +58,74 @@ patterns:
 - name: invalid.deprecated.marvell
   match: (color\.purple\.highlight)
 
-# Also need to add parsing hex & contradict with 1), 2)
-#- comment: Match all digits
-#  name: entity.name.function.marvell
-#  match: (\d+)
+- comment: Match func... and file...
+  name: support.function.marvell #blue
+  match: (?<=\])((\s+)egress port(\s+))(?=(\[))
 
-# - comment: Match headlines in [..]
-#   name: constant.numeric.marvell
-#   begin: ^(\s*+)\[(\^?\])? # TOCHECK: "[^]]" and "[]]" valid?
-#   end: \]
-
-# - comment: Match block comments /*...*/
-#   name: comment.block.marvell
-#   begin: \/\*
-#   end: \*\/
-
-- comment: Match keywords
-  name: invalid.illegal.marvell
-  match: (SIM_LOG_IN_PACKET_STR) # add matches
+- comment: Match func... and file...
+  name: support.function.marvell #blue
+  match: (?<=(frame dump.{37}\]))((\s+)ingress port(\s+))(?=(\[))
 
 - comment: Match line comments ###, ^^^, ---, ***
-  name: comment.marvell
+  name: comment.marvell #grey
   begin: (^|(\s+))(\#\#\#|\^\^\^|\-\-\-|\*\*\*)
   end: (?=($|(SIM_LOG_IN_PACKET_STR)))
 
-# - comment: Match quoted text in '..'
-#   name: constant.numeric.marvell
-#   match: (0x?[0-9A-Fa-f]+)
+- comment: Match square brackets
+  name: comment.marvell #grey
+  match: (\[|\])
 
-- comment: Match quoted text in ".."
-  name: constant.numeric.marvell
+- comment: Match numbers
+  name: constant.numeric.marvell #purple
   begin: (?<=\[)((\s?)(0x?[0-9A-Fa-f]+)(\s?))
   end: (?=(\]))
 
-- comment: Match quoted text in ".."
-  name: string.marvell
+- comment: Match numbers
+  name: constant.numeric.marvell #purple
+  begin: (?<=\[)((\s?)([0-9]+)(\s?))
+  end: (?=(\]))
+
+- comment: Match numbers
+  name: constant.numeric.marvell #purple
+  match: ((\s?)(0x?[0-9A-Fa-f]+)(\s))
+
+- comment: Match numbers
+  name: constant.numeric.marvell #purple
+  match: \b[0-9a-f]+\b
+
+- comment: Match func... and file...
+  name: string.marvell #yelow
   begin: (?<= func\[)|(?<= file\[)
   end: (?=(\]))
+
+- comment: Match keywords
+  name: invalid.illegal.marvell #red highlight
+  match: (SIM_LOG_IN_PACKET_STR) # add matches
+
+- comment: Match keywords
+  name: keyword.marvell # red
+  match: (Create new descriptor) # add matches
+
+- comment: Match keywords
+  name: entity.name.marvell #green
+  match: \b(CMD_FORWARD|CMD_MIRROR|CMD_TRAP|CMD_TRAP_TO_CPU|CMD_SOFT_DROP|CMD_HARD_DROP)\b
+
+- comment: Match keywords
+  name: markup.bold.marvell #bold
+  match: \b(packetCmd)\b
+
+- comment: Match func... and file...
+  name: markup.bold.marvell #blue
+  match: (the Router Trigger checks)
+
+- comment: Match func... and file...
+  name: keyword.marvell #yelow
+  match: (FAILED the Router Trigger checks)
+
+- comment: Match func... and file...
+  name: entity.name.marvell #yelow
+  match: (PASSED the Router Trigger checks)
+
 
 # - comment: Match quoted text in ".."
 #   name: support.function.marvell
@@ -109,22 +140,6 @@ patterns:
 # - comment: Match menu items [..]
 #   name: constant.numeric.marvell
 #   match: ^(\s*+)([0-9A-F]\)) # still don't work
-
-- comment: Match keywords
-  name: keyword.marvell # red
-  match: (Create new descriptor) # add matches
-
-- comment: Match keywords
-  name: comment.marvell #grey
-  match: (\[|\])
-
-- comment: Match keywords
-  name: entity.name.marvell #green
-  match: \b(CMD_FORWARD|CMD_MIRROR|CMD_TRAP|CMD_TRAP_TO_CPU|CMD_SOFT_DROP|CMD_HARD_DROP)\b
-
-- comment: Match keywords
-  name: markup.bold.marvell #bold
-  match: \b(packetCmd)\b
 
 # - comment: Match block comments <...>
 #   name: string.marvell

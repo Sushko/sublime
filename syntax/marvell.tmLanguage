@@ -107,11 +107,19 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Match keywords</string>
+			<string>Match func... and file...</string>
 			<key>match</key>
-			<string>(SIM_LOG_IN_PACKET_STR)</string>
+			<string>(?&lt;=\])((\s+)egress port(\s+))(?=(\[))</string>
 			<key>name</key>
-			<string>invalid.illegal.marvell</string>
+			<string>support.function.marvell</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>match</key>
+			<string>(?&lt;=(frame dump.{37}\]))((\s+)ingress port(\s+))(?=(\[))</string>
+			<key>name</key>
+			<string>support.function.marvell</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -124,10 +132,18 @@
 			<string>comment.marvell</string>
 		</dict>
 		<dict>
+			<key>comment</key>
+			<string>Match square brackets</string>
+			<key>match</key>
+			<string>(\[|\])</string>
+			<key>name</key>
+			<string>comment.marvell</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>(?&lt;=\[)((\s?)(0x?[0-9A-Fa-f]+)(\s?))</string>
 			<key>comment</key>
-			<string>Match quoted text in ".."</string>
+			<string>Match numbers</string>
 			<key>end</key>
 			<string>(?=(\]))</string>
 			<key>name</key>
@@ -135,9 +151,35 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>(?&lt;=\[)((\s?)([0-9]+)(\s?))</string>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>end</key>
+			<string>(?=(\]))</string>
+			<key>name</key>
+			<string>constant.numeric.marvell</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>match</key>
+			<string>((\s?)(0x?[0-9A-Fa-f]+)(\s))</string>
+			<key>name</key>
+			<string>constant.numeric.marvell</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>match</key>
+			<string>\b[0-9a-f]+\b</string>
+			<key>name</key>
+			<string>constant.numeric.marvell</string>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>(?&lt;= func\[)|(?&lt;= file\[)</string>
 			<key>comment</key>
-			<string>Match quoted text in ".."</string>
+			<string>Match func... and file...</string>
 			<key>end</key>
 			<string>(?=(\]))</string>
 			<key>name</key>
@@ -147,17 +189,17 @@
 			<key>comment</key>
 			<string>Match keywords</string>
 			<key>match</key>
-			<string>(Create new descriptor)</string>
+			<string>(SIM_LOG_IN_PACKET_STR)</string>
 			<key>name</key>
-			<string>keyword.marvell</string>
+			<string>invalid.illegal.marvell</string>
 		</dict>
 		<dict>
 			<key>comment</key>
 			<string>Match keywords</string>
 			<key>match</key>
-			<string>(\[|\])</string>
+			<string>(Create new descriptor)</string>
 			<key>name</key>
-			<string>comment.marvell</string>
+			<string>keyword.marvell</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -174,6 +216,30 @@
 			<string>\b(packetCmd)\b</string>
 			<key>name</key>
 			<string>markup.bold.marvell</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>match</key>
+			<string>(the Router Trigger checks)</string>
+			<key>name</key>
+			<string>markup.bold.marvell</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>match</key>
+			<string>(FAILED the Router Trigger checks)</string>
+			<key>name</key>
+			<string>keyword.marvell</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>match</key>
+			<string>(PASSED the Router Trigger checks)</string>
+			<key>name</key>
+			<string>entity.name.marvell</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
