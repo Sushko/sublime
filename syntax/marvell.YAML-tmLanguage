@@ -62,14 +62,18 @@ patterns:
   name: support.function.marvell #blue
   match: (?<=\])((\s+)egress port(\s+))(?=(\[))
 
+- comment: Match keywords
+  name: markup.bold.marvell #bold
+  match: \b(slan0.)\b
+
 - comment: Match func... and file...
   name: support.function.marvell #blue
-  match: (?<=(frame dump.{37}\]))((\s+)ingress port(\s+))(?=(\[))
+  match: (?<=([\r\n]^.{30}\]))((\s+)ingress port(\s+))(?=(\[))
 
 - comment: Match line comments ###, ^^^, ---, ***
   name: comment.marvell #grey
   begin: (^|(\s+))(\#\#\#|\^\^\^|\-\-\-|\*\*\*)
-  end: (?=($|(SIM_LOG_IN_PACKET_STR)))
+  end: (?=($|(SIM_LOG_IN_PACKET_STR)|(SIM_LOG_OUT_REPLICATION_STR)|(SIM_LOG_ENDED_IN_PACKET_STR)))
 
 - comment: Match square brackets
   name: comment.marvell #grey
@@ -77,17 +81,17 @@ patterns:
 
 - comment: Match numbers
   name: constant.numeric.marvell #purple
-  begin: (?<=\[)((\s?)(0x?[0-9A-Fa-f]+)(\s?))
+  begin: (?<=\[)(\b(\s?)(0x?[0-9A-Fa-f]+)(\s?)\b)
   end: (?=(\]))
 
 - comment: Match numbers
   name: constant.numeric.marvell #purple
-  begin: (?<=\[)((\s?)([0-9]+)(\s?))
+  begin: (?<=\[)(\b(\s?)([0-9]+)(\s?)\b)
   end: (?=(\]))
 
 - comment: Match numbers
   name: constant.numeric.marvell #purple
-  match: ((\s?)(0x?[0-9A-Fa-f]+)(\s))
+  match: ((\s?)\b(0x?[0-9A-Fa-f]+)\b(\s?))
 
 - comment: Match numbers
   name: constant.numeric.marvell #purple
@@ -100,7 +104,7 @@ patterns:
 
 - comment: Match keywords
   name: invalid.illegal.marvell #red highlight
-  match: (SIM_LOG_IN_PACKET_STR) # add matches
+  match: (SIM_LOG_IN_PACKET_STR|SIM_LOG_OUT_REPLICATION_STR|SIM_LOG_ENDED_IN_PACKET_STR) # add matches
 
 - comment: Match keywords
   name: keyword.marvell # red
@@ -108,24 +112,23 @@ patterns:
 
 - comment: Match keywords
   name: entity.name.marvell #green
-  match: \b(CMD_FORWARD|CMD_MIRROR|CMD_TRAP|CMD_TRAP_TO_CPU|CMD_SOFT_DROP|CMD_HARD_DROP)\b
+  match: \b(CMD_FORWARD|CMD_MIRROR|CMD_MIRROR_TO_CPU|CMD_FROM_CPU|CMD_TRAP|CMD_TRAP_TO_CPU|CMD_SOFT_DROP|CMD_HARD_DROP)\b
 
 - comment: Match keywords
   name: markup.bold.marvell #bold
   match: \b(packetCmd)\b
 
-- comment: Match func... and file...
-  name: markup.bold.marvell #blue
-  match: (the Router Trigger checks)
+- comment: Match keywords
+  name: support.function.marvell #blue
+  match: ((L3 is .*)|(NO L4 header in this packet)|(ingress packet from SLAN)|(send to SLAN)|(Final packet Hash value))
 
 - comment: Match func... and file...
-  name: keyword.marvell #yelow
+  name: keyword.marvell #red
   match: (FAILED the Router Trigger checks)
 
 - comment: Match func... and file...
-  name: entity.name.marvell #yelow
-  match: (PASSED the Router Trigger checks)
-
+  name: entity.name.marvell #green
+  match: ((PASSED the Router Trigger checks)|(No Bridge Bypass))
 
 # - comment: Match quoted text in ".."
 #   name: support.function.marvell
