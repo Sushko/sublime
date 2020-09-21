@@ -1,0 +1,122 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+#
+#  Copyright 2017 Justin Watson
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+# Made by Justin Watson on 2017 Apr. 27, Sublime Text 3 build 3126
+#
+# This is a syntax highlighter for Devicetree. I used the Devicetree
+# Specification "devicetree-specification-v0.1-20160524".
+#
+# First I installed PackageDev using the Sublime Text 3 package manager. Then I
+# made the device-tree.YAML-tmLanguage file (this file). I then opened the YAML-
+# tmLanguage file and an example of the source. I would add a pattern to the
+# YAML-tmLanguage file and then hit F7 and select "Convert to Propert List". I
+# would then go to the example source and hit ctrl+shift+p to set the syntax.
+# Then I would confirm it visually. I made sure to use the language grammar
+# defined by textmate so that my color theme would be applied.
+#
+# Important links on how to make this file are....
+# (http://docs.sublimetext.info/en/latest/extensibility/syntaxdefs.html)
+# (http://manual.macromates.com/en/language_grammars#language_grammars)
+#
+# Order your matches from most specific to less specific. e.g. match ENDIF
+# before EN in the file. Otherwise you will end up with EN the right color
+# but not the 'D'.
+#
+#     Note that the regular expressions are matched against only a single line
+#     of the document at a time. That means it is not possible to use a pattern
+#     that matches multiple lines. The reason for this is technical: being able
+#     to restart the parser at an arbitrary line and having to re-parse only the
+#     minimal number of lines affected by an edit. In most situations it is
+#     possible to use the begin/end model to overcome this limitation
+#     [http://manual.macromates.com/en/language_grammars#language_grammars].
+#
+name: Devicetree
+scopeName: source.devicetree
+fileTypes: [dts, dtsi]
+uuid: f8106bbd-6378-40f2-b68e-d374441a0b9d
+
+patterns:
+- comment: Multiline Comment
+  name: comment.block.devicetree
+  begin: /\*
+  end: \*/
+- comment: One Line Comment
+  name: comment.line.double-slash.devicetree
+  begin: \s*(//)
+  beginCaptures:
+    '1': {name: punctuation.definition.comment.line.double-slash.devicetree}
+  end: (?<=$\n)(?<!\\$\n)
+
+# Since libraries can be added via quotes I am going to make the text following
+# a #include statement always show up as string.quoted.double so it gets the
+# same style.
+- comment: 'Version I.D.'
+  name: support.constant.file-version.devicetree
+  match: ^/dts-[a-z0-9]*/;$
+
+- name: keyword.standard.devicetree
+  match: \#include (.*)
+  captures:
+    '1': { name: string.quoted.double.devicetree }
+
+- name: keyword.standard.define.devicetree
+  match: \#define\s([^\s]*)\s(.*)
+  captures:
+    '1': { name: entity.name.type.macro.name.devicetree }
+    '2': { name: string.other.macro.value.devicetree }
+
+- comment: 'Devicetree Node, page 43'
+  name: node.devicetree
+  match: \b(?:([A-Za-z0-9]*):\s)?([A-Za-z0-9\_-]*)(\@)?([A-Za-z0-9\_-]*)\s*\{
+  captures:
+    '1': { name: storage.type.label.node.devicetree }
+    '2': { name: entity.name.type.node-name.node.devicetree }
+    '3': { name: keyword.operator.unit-address.node.devicetree }
+    '4': { name: constant.numeric.unit-address.node.devicetree }
+
+- comment: 'Property Definition'
+  name: property-definition.devicetree
+  begin: ((compatible|model|phandle|status|\#address-cells|\#size-cells|reg|virtual-reg|ranges|dma-ranges|device_type)|[\w,-]*)\s=
+  beginCaptures:
+    '1': { name: variable.property-name.devicetree }
+    '2': { name: variable.language.devicetree }
+  end: \;
+  patterns:
+  - include: '#quote'
+  - include: '#macro-def'
+  - include: '#numeric'
+
+- comment: 'This is for property definitions with empty value. Example: ranges;'
+  name: empty.property-defintion.devicetree
+  match: ((compatible|model|phandle|status|\#address-cells|\#size-cells|reg|virtual-reg|ranges|dma-ranges|device_type)|[\w,-]*)\;
+  captures:
+    '1': { name: variable.property-name.devicetree }
+    '2': { name: variable.language.devicetree }
+
+repository:
+  numeric:
+    patterns:
+    - name: constant.numeric.devicetree
+      match: ((0x)?\h*)
+  quote:
+    patterns:
+    - name: string.quoted.double.devicetree
+      begin: '"'
+      end: '"'
+  macro-def:
+    patterns:
+    - name: constant.numeric.devicetree
+      match: ([\w_])*

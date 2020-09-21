@@ -6,6 +6,7 @@
 	<array>
 		<string>lex</string>
 		<string>marvell</string>
+		<string>larch</string>
 	</array>
 	<key>name</key>
 	<string>Lex</string>

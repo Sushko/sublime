@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>klog</string>
+	</array>
+	<key>name</key>
+	<string>kernell log</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>color templates</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.white)((\s+)|$)</string>
+			<key>name</key>
+			<string>markup.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.white\.italic)((\s+)|$)</string>
+			<key>name</key>
+			<string>markup.italic.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.white\.bold)((\s+)|$)</string>
+			<key>name</key>
+			<string>markup.bold.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(color\.white\.highlight)</string>
+			<key>name</key>
+			<string>markup.raw.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.grey)((\s+)|$)</string>
+			<key>name</key>
+			<string>comment.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.red)((\s+)|$)</string>
+			<key>name</key>
+			<string>keyword.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(color\.red\.highlight)</string>
+			<key>name</key>
+			<string>invalid.illegal.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.orange\.italic)((\s+)|$)</string>
+			<key>name</key>
+			<string>variable.parameter.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.yellow)((\s+)|$)</string>
+			<key>name</key>
+			<string>string.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.green)((\s+)|$)</string>
+			<key>name</key>
+			<string>entity.name.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.green\.italic)((\s+)|$)</string>
+			<key>name</key>
+			<string>entity.other.inherited-class.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.blue)((\s+)|$)</string>
+			<key>name</key>
+			<string>support.function.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.blue\.italic)((\s+)|$)</string>
+			<key>name</key>
+			<string>storage.type.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(\s+))(color\.purple)((\s+)|$)</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(color\.purple\.highlight)</string>
+			<key>name</key>
+			<string>invalid.deprecated.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match $ sign in usd values</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(?&lt;=\s))(\$)(?=([0-9]{1,3}(\,[0-9]{3})?(\,[0-9]{3})?)((\s)))</string>
+			<key>name</key>
+			<string>string.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\/\*</string>
+			<key>comment</key>
+			<string>Match block comments /*...*/</string>
+			<key>end</key>
+			<string>\*\/</string>
+			<key>name</key>
+			<string>comment.block.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^|(\s+))(\-\-|\/\/|\#)</string>
+			<key>comment</key>
+			<string>Match line comments --, //,</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>comment.line.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^|(\s+))\'</string>
+			<key>comment</key>
+			<string>Match quoted text in '..'</string>
+			<key>end</key>
+			<string>\'</string>
+			<key>name</key>
+			<string>string.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^|(\s+))\"</string>
+			<key>comment</key>
+			<string>Match quoted text in ".."</string>
+			<key>end</key>
+			<string>\"</string>
+			<key>name</key>
+			<string>string.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((http://)|(https://)|(ftp://))</string>
+			<key>comment</key>
+			<string>Match links http:// https://</string>
+			<key>end</key>
+			<string>((\s+)|$)</string>
+			<key>name</key>
+			<string>support.type.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match menu items [..]</string>
+			<key>match</key>
+			<string>^(\s*+)([0-9A-F]\))</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match keywords</string>
+			<key>match</key>
+			<string>(^|(?&lt;=\s))(lex)((?=\s)|$)</string>
+			<key>name</key>
+			<string>variable.parameter.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>match</key>
+			<string>(?&lt;=\])((\s+)egress port(\s+))(?=(\[))</string>
+			<key>name</key>
+			<string>support.function.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match keywords</string>
+			<key>match</key>
+			<string>\b(slan0.)\b</string>
+			<key>name</key>
+			<string>markup.bold.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>match</key>
+			<string>(?&lt;=([\r\n]^.{30}\]))((\s+)ingress port(\s+))(?=(\[))</string>
+			<key>name</key>
+			<string>support.function.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^|(\s+))(\#\#\#|\^\^\^|\-\-\-|\*\*\*)</string>
+			<key>comment</key>
+			<string>Match line comments</string>
+			<key>end</key>
+			<string>(?=($|(SIM_LOG_IN_PACKET_STR)|(SIM_LOG_OUT_REPLICATION_STR)|(SIM_LOG_ENDED_IN_PACKET_STR)))</string>
+			<key>name</key>
+			<string>comment.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match square brackets</string>
+			<key>match</key>
+			<string>(\[|\])</string>
+			<key>name</key>
+			<string>comment.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=\[)(\b(\s?)(0x?[0-9A-Fa-f]+)(\s?)\b)</string>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>end</key>
+			<string>(?=(\]))</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=\[)(\b(\s?)([0-9]+)(\s?)\b)</string>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>end</key>
+			<string>(?=(\]))</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>match</key>
+			<string>((\s?)\b(0x?[0-9A-Fa-f]+)\b(\s?))</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match numbers</string>
+			<key>match</key>
+			<string>\b[0-9a-f]+\b</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;= func\[)|(?&lt;= file\[)</string>
+			<key>comment</key>
+			<string>Match func... and file...</string>
+			<key>end</key>
+			<string>(?=(\]))</string>
+			<key>name</key>
+			<string>string.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match keywords</string>
+			<key>match</key>
+			<string>(camera|Camera|CAMERA)</string>
+			<key>name</key>
+			<string>invalid.illegal.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match keywords</string>
+			<key>match</key>
+			<string>\b(error|ERROR|Error|fail|FAIL|Fail|failed|FAILED|Failed)\b</string>
+			<key>name</key>
+			<string>keyword.klog</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(\s*+)\[(\^?\])?</string>
+			<key>comment</key>
+			<string>Match headlines in [..]</string>
+			<key>end</key>
+			<string>\]</string>
+			<key>name</key>
+			<string>constant.numeric.klog</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Match keywords</string>
+			<key>match</key>
+			<string>(.*(Freeing unused kernel memory|Bootcharting|starting service 'zygote'|Boot completed|sleep\.monitor).*)</string>
+			<key>name</key>
+			<string>entity.name.klog</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.klog</string>
+	<key>uuid</key>
+	<string>0f1542b9-eac7-485c-ade4-2f952adb4de5</string>
+</dict>
+</plist>
